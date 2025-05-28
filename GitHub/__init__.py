@@ -6,6 +6,11 @@ def main(username: str) -> dict:
     :param username: Nome de usuário no GitHub
     :return: Dicionário com os dados do usuário
     """
+    if not username or not isinstance(username, str):
+        raise ValueError("O parâmetro 'username' é obrigatório e deve ser uma string.")
+    if not username.isalnum():
+        raise ValueError("O parâmetro 'username' deve conter apenas caracteres alfanuméricos.")
+    
     url = f"https://api.github.com/users/{username}"
     try:
         response = requests.get(url, timeout=5)
