@@ -1,0 +1,76 @@
+{
+    "info": {
+        "name": "Azure Durable Functions - Exemplo",
+        "description": "Coleção para testar Azure Durable Functions com Python",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Iniciar Orquestração",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "url": {
+                    "raw": "http://localhost:7071/api/orchestrators/HelloOrchestrator",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "7071",
+                    "path": [
+                        "api",
+                        "orchestrators",
+                        "HelloOrchestrator"
+                    ]
+                },
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n  \"cep\": \"Seu cep aqui\",\n \"username\": \"Seu username no github aqui\" \n}"
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Verificar Status da Orquestração",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "http://localhost:7071/runtime/webhooks/durabletask/instances/{{instanceId}}?taskHub=DurableFunctionsHub&connection=Storage&code={{systemKey}}",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "7071",
+                    "path": [
+                        "runtime",
+                        "webhooks",
+                        "durabletask",
+                        "instances",
+                        "{{instanceId}}"
+                    ],
+                    "query": [
+                        {
+                            "key": "taskHub",
+                            "value": "DurableFunctionsHub"
+                        },
+                        {
+                            "key": "connection",
+                            "value": "Storage"
+                        },
+                        {
+                            "key": "code",
+                            "value": "{{systemKey}}"
+                        }
+                    ]
+                }
+            },
+            "response": []
+        }
+    ]
+}

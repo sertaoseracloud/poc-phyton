@@ -1,0 +1,10 @@
+{
+  "bindings": [
+    {
+      "name": "cep",
+      "type": "activityTrigger",
+      "direction": "in"
+    }
+  ],
+  "scriptFile": "__init__.py"
+}
