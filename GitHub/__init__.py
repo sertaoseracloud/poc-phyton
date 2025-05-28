@@ -2,14 +2,14 @@ import requests
 
 def main(username: str) -> dict:
     """
-    Consulta informações públicas de um usuário do GitHub.
-    :param username: Nome de usuário no GitHub
-    :return: Dicionário com os dados do usuário
+    Retrieves public information about a GitHub user.
+    :param username: GitHub username
+    :return: Dictionary with user data
     """
     if not username or not isinstance(username, str):
-        raise ValueError("O parâmetro 'username' é obrigatório e deve ser uma string.")
+        raise ValueError("The 'username' parameter is required and must be a string.")
     if not username.isalnum():
-        raise ValueError("O parâmetro 'username' deve conter apenas caracteres alfanuméricos.")
+        raise ValueError("The 'username' parameter must contain only alphanumeric characters.")
     
     url = f"https://api.github.com/users/{username}"
     try:
@@ -17,4 +17,4 @@ def main(username: str) -> dict:
         response.raise_for_status()
         return response.json()
     except requests.RequestException as e:
-        raise Exception(f"Erro ao consultar o usuário {username} no GitHub: {e}")
+        raise Exception(f"Error fetching user {username} from GitHub: {e}")
